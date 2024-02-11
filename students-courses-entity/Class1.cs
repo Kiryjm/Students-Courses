@@ -1,4 +1,4 @@
-﻿namespace students_courses_entity;
+﻿namespace Students.Courses.Entity;
 public class Class1
 {
 

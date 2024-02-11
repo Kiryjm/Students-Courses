@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using students_courses_api;
 
-namespace students_courses_api.Controllers;
+namespace Students.Courses.Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]

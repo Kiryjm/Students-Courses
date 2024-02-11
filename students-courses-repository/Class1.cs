@@ -1,4 +1,4 @@
-﻿namespace students_courses_repository;
+﻿namespace Students.Courses.Repository;
 public class Class1
 {
 
