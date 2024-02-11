@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using students_courses_api;
 
 namespace Students.Courses.Api.Controllers;
 
