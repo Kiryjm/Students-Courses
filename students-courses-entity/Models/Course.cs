@@ -11,4 +11,6 @@ public class Course : Model
     public DateTime StartDate { get; set; }
     
     public DateTime EndDate { get; set; }
+
+    public ICollection<Student> Students { get; set; }
 }

@@ -9,4 +9,6 @@ public class Student : Model
     public string Surname { get; set; }
     
     public string Email { get; set; }
+    
+    public ICollection<Course> Courses { get; set; }
 }
