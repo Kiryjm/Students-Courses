@@ -17,7 +17,21 @@ public class StudentService : IStudentService
 
     public async Task<IEnumerable<Student>> GetStudents()
     {
-        return await _context.Students.ToListAsync();
+
+        try
+        {
+            _context.Database.BeginTransaction();
+            var students = await _context.Students.ToListAsync();
+            
+            
+            _context.Database.CommitTransaction();
+            return students;
+        }
+        catch (Exception e)
+        {
+            _context.Database.RollbackTransaction();
+            throw;
+        }
     }
 
     public async Task<Student> GetStudent(Guid id)

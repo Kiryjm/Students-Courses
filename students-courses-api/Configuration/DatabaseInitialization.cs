@@ -16,7 +16,7 @@ public static class DatabaseInitialization
         {
             var context = services.GetRequiredService<DataContext>();
             await context.Database.MigrateAsync();
-            await Seed.SeedStudents(context);
+            await Seed.SeedAll(context);
         }
         catch (Exception ex)
         {
