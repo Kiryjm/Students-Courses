@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Students.Courses.Api.Configuration;
+using Students.Courses.Api.Interfaces;
+using Students.Courses.Api.Services;
 using Students.Courses.Repository.Context;
 using Students.Courses.Repository.Seeds;
 
@@ -17,6 +19,9 @@ builder.Services.AddDbContext<DataContext>(opt =>
     opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+builder.Services.AddTransient<IStudentService, StudentService>();
+builder.Services.AddTransient<ICourseService, CourseService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -32,6 +37,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Initialize(config);
+app.InitializeDatabase();
 
 app.Run();

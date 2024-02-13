@@ -6,10 +6,10 @@ namespace Students.Courses.Api.Configuration;
 
 public static class DatabaseInitialization
 {
-    public static async void Initialize(this IApplicationBuilder app, IConfiguration configuration)
+    public static async void InitializeDatabase(this WebApplication app)
     {
-        // using var scope = app.Services.CreateScope();
-        using var scope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope();
+        using var scope = app.Services.CreateScope();
+        // using var scope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope();
         var services = scope.ServiceProvider;
 
         try
