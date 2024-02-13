@@ -6,12 +6,12 @@ namespace Students.Courses.Repository.Seeds;
 
 public class Seed
 {
-
-    private static List<Student> _students;
-    private static List<Course> _courses;
-    private static IEnumerable<Student> SeedStudents()
+    public static async Task SeedAll(DataContext context)
     {
-        _students = new List<Student>
+        if (context.Students.Any() || context.Courses.Any()) return;
+        
+        // students
+        var students = new List<Student>
         {
             new Student
             {
@@ -37,13 +37,9 @@ public class Seed
 
             },
         };
-
-        return _students;
-    }
-    
-    private static IEnumerable<Course> SeedCourses()
-    {
-        _courses = new List<Course>()
+        
+        // courses
+        var courses = new List<Course>()
         {
             new Course()
             {
@@ -54,8 +50,8 @@ public class Seed
                 EndDate = DateTime.UtcNow.AddMonths(1),
                 Students = new List<Student>()
                 {
-                    _students[0],
-                    _students[1]
+                    students[0],
+                    students[1]
                 }
             },
             new Course()
@@ -67,20 +63,11 @@ public class Seed
                 EndDate = DateTime.UtcNow.AddMonths(2),
                 Students = new List<Student>()
                 {
-                    _students[2]
+                    students[2]
                 }
             },
         };
 
-        return _courses;
-    }
-    public static async Task SeedAll(DataContext context)
-    {
-        if (context.Students.Any() || context.Courses.Any()) return;
-
-        var students = SeedStudents();
-        var courses = SeedCourses();
-            
         await context.Students.AddRangeAsync(students);
         await context.Courses.AddRangeAsync(courses);
         await context.SaveChangesAsync();
