@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using Students.Courses.Entity.Models;
+﻿using Students.Courses.Entity.Models;
 using Students.Courses.Repository.Context;
 
 namespace Students.Courses.Repository.Seeds;

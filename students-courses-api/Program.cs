@@ -24,11 +24,22 @@ builder.Services.AddTransient<ICourseService, CourseService>();
 
 var app = builder.Build();
 
+var serviceBasePath = config["ServiceBasePath"];
+// *** Configuring the path that the service runs
+app.UsePathBase(serviceBasePath);
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    // app.UseSwaggerUI(c =>
+    // {
+    //     c.SwaggerEndpoint(
+    //         $"{config["ServiceBasePath"]}/swagger.json",
+    //         "App Store API v1"
+    //     );
+    // });
 }
 
 app.UseHttpsRedirection();
