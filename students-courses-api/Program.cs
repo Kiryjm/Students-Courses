@@ -4,6 +4,7 @@ using Students.Courses.Api.Interfaces;
 using Students.Courses.Api.Services;
 using Students.Courses.Repository.Context;
 using Students.Courses.Repository.Seeds;
+using Students.Courses.Services.Students;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
@@ -22,12 +23,16 @@ builder.Services.AddCors(opt =>
 {
     opt.AddPolicy("CorsPolicy", policy =>
     {
-        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
+        policy
+            .AllowAnyHeader()
+            .AllowAnyMethod().WithOrigins("http://localhost:3000");
     });
 });
 
 builder.Services.AddTransient<IStudentService, StudentService>();
 builder.Services.AddTransient<ICourseService, CourseService>();
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssembly(typeof(StudentsList.Handler).Assembly));
 
 var app = builder.Build();
 
