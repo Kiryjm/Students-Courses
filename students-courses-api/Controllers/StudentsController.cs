@@ -22,8 +22,6 @@ public class StudentsController : BaseApiController
     [HttpGet("{id}")]
     public async Task<ActionResult<Student>> GetStudent(Guid id)
     {
-        // var student = await _studentService.GetStudent(id);
-
-        return Ok();
+        return await Mediator.Send(new StudentDetails.Query { Id = id });
     }
 }
