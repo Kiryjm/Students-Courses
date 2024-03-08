@@ -20,8 +20,16 @@ public class StudentsController : BaseApiController
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Student>> GetStudent(Guid id)
+    public async ValueTask<ActionResult<Student>> GetStudent(Guid id)
     {
         return await Mediator.Send(new StudentDetails.Query { Id = id });
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> CreateStudent(Student student)
+    {
+        await Mediator.Send(new CreateStudent.Command { Student = student });
+        
+        return Ok();
     }
 }
