@@ -32,4 +32,13 @@ public class StudentsController : BaseApiController
         
         return Ok();
     }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> EditStudent(Guid id, Student student)
+    {
+        student.Id = id;
+        await Mediator.Send(new EditStudent.Command { Student = student });
+
+        return Ok();
+    }
 }
