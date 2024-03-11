@@ -4,6 +4,7 @@ using Students.Courses.Api.Interfaces;
 using Students.Courses.Api.Services;
 using Students.Courses.Repository.Context;
 using Students.Courses.Repository.Seeds;
+using Students.Courses.Services.Core;
 using Students.Courses.Services.Students;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,6 +34,7 @@ builder.Services.AddTransient<IStudentService, StudentService>();
 builder.Services.AddTransient<ICourseService, CourseService>();
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssembly(typeof(StudentsList.Handler).Assembly));
+builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 
 var app = builder.Build();
 
