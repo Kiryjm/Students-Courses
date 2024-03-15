@@ -41,4 +41,12 @@ public class StudentsController : BaseApiController
 
         return Ok();
     }
+    
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteStudent(Guid id)
+    {
+        await Mediator.Send(new DeleteStudents.Command { Id = id });
+
+        return Ok();
+    }
 }
